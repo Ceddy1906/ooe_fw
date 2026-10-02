@@ -12,14 +12,12 @@ Home-Assistant-Integration, die die **laufenden Feuerwehreinsätze in Oberöster
 - Eigene **Lovelace-Card**, die automatisch registriert wird (keine Ressource nötig)
 - Sensoren für Automationen (z. B. Push-Nachricht bei neuem Einsatz)
 
-## Installation über HACS (privates Repository)
+## Installation über HACS
 
-1. HACS → ⋮ → **Benutzerdefinierte Repositories** → URL deines Repositories eintragen, Kategorie **Integration**.
+1. HACS → ⋮ → **Benutzerdefinierte Repositories** → `https://github.com/Ceddy1906/ooe_fw` eintragen, Kategorie **Integration**.
 2. „OÖ Feuerwehr Einsätze“ installieren und Home Assistant neu starten.
 3. **Einstellungen → Geräte & Dienste → Integration hinzufügen → „OÖ Feuerwehr Einsätze“**.
 4. Bezirke, Filter und Abfrageintervall wählen. Spätere Änderungen sind über **Konfigurieren** an der Integration möglich.
-
-> Für ein privates GitHub-Repository benötigt HACS einen Personal Access Token (Einstellungen von HACS → GitHub-Anmeldung).
 
 ## Entitäten
 
