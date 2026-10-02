@@ -1,0 +1,13 @@
+{
+  "domain": "ooelfv_einsaetze",
+  "name": "OÖ Feuerwehr Einsätze",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": ["http", "frontend"],
+  "documentation": "https://github.com/DEIN-NAME/ooelfv_einsaetze",
+  "issue_tracker": "https://github.com/DEIN-NAME/ooelfv_einsaetze/issues",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "0.1.0"
+}

@@ -1,0 +1,45 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "OÖ Feuerwehr Einsätze",
+        "description": "Wähle, welche Bezirke angezeigt werden sollen. Ohne Auswahl werden alle Bezirke angezeigt.",
+        "data": {
+          "bezirke": "Bezirke",
+          "subtyp_filter": "Einsatz od. Einsatzübung",
+          "interval": "Abfrageintervall"
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "OÖ Feuerwehr Einsätze",
+        "description": "Ohne Auswahl bei den Bezirken werden alle Bezirke angezeigt.",
+        "data": {
+          "bezirke": "Bezirke",
+          "subtyp_filter": "Einsatz od. Einsatzübung",
+          "interval": "Abfrageintervall"
+        }
+      }
+    }
+  },
+  "selector": {
+    "subtyp_filter": {
+      "options": {
+        "all": "Alle anzeigen",
+        "only": "Nur „Einsatz od. Einsatzübung“",
+        "exclude": "Alles außer „Einsatz od. Einsatzübung“"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "einsaetze": { "name": "Aktuelle Einsätze" }
+    },
+    "binary_sensor": {
+      "einsatz_aktiv": { "name": "Einsatz aktiv" }
+    }
+  }
+}
