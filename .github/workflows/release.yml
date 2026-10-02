@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Version aus Release-Tag in manifest.json übernehmen
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          file=custom_components/ooelfv_einsaetze/manifest.json
+          jq --arg v "$version" '.version = $v' "$file" > manifest.tmp
+          mv manifest.tmp "$file"
+
+      - name: ZIP erstellen
+        run: |
+          cd custom_components/ooelfv_einsaetze
+          zip -r "$GITHUB_WORKSPACE/ooelfv_einsaetze.zip" .
+
+      - name: ZIP am Release anhängen
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" ooelfv_einsaetze.zip --clobber
