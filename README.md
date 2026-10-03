@@ -62,11 +62,23 @@ actions:
 
 ## Card
 
+Die Card lässt sich komplett über die Oberfläche einrichten (**Karte hinzufügen → „OÖ Feuerwehr Einsätze“**). Im Editor stehen zur Verfügung:
+
+- **Konfiguration:** Entität, Titel, maximale Anzahl Einsätze und **Interaktionen** (Aktion beim Tippen, Halten und Doppeltipp, Standard beim Tippen: Details der Entität)
+- **Sichtbarkeit:** Die Standard-Bedingungen von Home Assistant (z. B. nur für bestimmte Benutzer oder nur wenn ein Einsatz aktiv ist)
+- **Layout:** Spalten und Zeilen im Dashboard-Typ „Bereiche“
+
+Der Link „Karte“ in der Card löst keine Aktion aus.
+
+Oder per YAML:
+
 ```yaml
 type: custom:ooelfv-einsaetze-card
 entity: sensor.aktuelle_einsatze   # deine Entität „Aktuelle Einsätze“
-title: Feuerwehr Einsätze   # optional
-max_einsaetze: 10           # optional
+title: Feuerwehr Einsätze          # optional
+max_einsaetze: 10                  # optional
+tap_action:                        # optional, ebenso hold_action / double_tap_action
+  action: more-info
 ```
 
 Angezeigt werden je Einsatz: Beginn, Feuerwehren vor Ort (eine oder mehrere), Alarmstufe, Einsatzort, Einsatztyp und Ort (mit Link zur Karte auf OpenStreetMap). Liegt kein Einsatz vor, steht in der Card „Keine Einsätze“.
