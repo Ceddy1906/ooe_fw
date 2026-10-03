@@ -12,6 +12,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.typing import ConfigType
+from homeassistant.loader import async_get_integration
 
 from .const import CARD_URL, DOMAIN
 from .coordinator import EinsaetzeCoordinator
@@ -29,7 +30,9 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     await hass.http.async_register_static_paths(
         [StaticPathConfig(CARD_URL, str(card), False)]
     )
-    add_extra_js_url(hass, CARD_URL)
+    # Version als Query-Parameter, damit der Browser nach Updates neu lädt
+    integration = await async_get_integration(hass, DOMAIN)
+    add_extra_js_url(hass, f"{CARD_URL}?v={integration.version}")
     return True
 
 

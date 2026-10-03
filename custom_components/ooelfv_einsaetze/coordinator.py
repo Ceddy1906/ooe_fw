@@ -76,7 +76,8 @@ class EinsaetzeCoordinator(DataUpdateCoordinator[list[dict[str, Any]]]):
         except (ClientError, TimeoutError, ValueError) as err:
             raise UpdateFailed(f"Abruf der Einsatzdaten fehlgeschlagen: {err}") from err
 
-        raw = payload.get("einsaetze") or {}
+        raw = payload.get("einsaetze") if isinstance(payload, dict) else None
+        raw = raw or {}
         items = raw.values() if isinstance(raw, dict) else raw
 
         result: list[dict[str, Any]] = []

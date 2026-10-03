@@ -98,10 +98,11 @@ class OoelfvEinsaetzeCard extends HTMLElement {
       body = `<div class="empty">Entität ${esc(this._config.entity)} nicht gefunden.</div>`;
     } else {
       const max = this._config.max_einsaetze || 10;
-      const list = (st.attributes.einsaetze || []).slice(0, max);
+      const all = st.attributes && st.attributes.einsaetze;
+      const list = (Array.isArray(all) ? all : []).slice(0, max);
       body = list.length
         ? list.map((e) => this._einsatz(e)).join("")
-        : `<div class="empty">Keine aktuellen Einsätze</div>`;
+        : `<div class="empty">Keine Einsätze</div>`;
     }
 
     this.shadowRoot.innerHTML = `
