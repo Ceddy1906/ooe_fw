@@ -18,7 +18,9 @@ Home-Assistant-Integration, die die **laufenden Feuerwehreinsätze in Oberöster
 1. HACS → ⋮ → **Benutzerdefinierte Repositories** → `https://github.com/Ceddy1906/ooe_fw` eintragen, Kategorie **Integration**.
 2. „OÖ Feuerwehr Einsätze“ installieren und Home Assistant neu starten.
 3. **Einstellungen → Geräte & Dienste → Integration hinzufügen → „OÖ Feuerwehr Einsätze“**.
-4. Bezirke, Filter und Abfrageintervall wählen. Spätere Änderungen sind über **Konfigurieren** an der Integration möglich.
+4. Bezirke, Filter, Abfrageintervall und (optional) Benachrichtigungen wählen. Spätere Änderungen sind über **Konfigurieren** an der Integration möglich.
+
+Die Card wird mit der Integration geladen. Nach einem Update hilft ein harter Reload des Browsers (Strg+F5), in der Companion-App das Leeren des Frontend-Caches.
 
 ## Entitäten
 
@@ -62,15 +64,18 @@ actions:
 
 ```yaml
 type: custom:ooelfv-einsaetze-card
-entity: sensor.oo_feuerwehr_einsaetze_aktuelle_einsaetze
+entity: sensor.aktuelle_einsatze   # deine Entität „Aktuelle Einsätze“
 title: Feuerwehr Einsätze   # optional
 max_einsaetze: 10           # optional
 ```
 
-Angezeigt werden je Einsatz: Beginn, Feuerwehren vor Ort (eine oder mehrere), Alarmstufe, Einsatzort, Einsatztyp und Ort (mit Link zur Karte auf OpenStreetMap).
+Angezeigt werden je Einsatz: Beginn, Feuerwehren vor Ort (eine oder mehrere), Alarmstufe, Einsatzort, Einsatztyp und Ort (mit Link zur Karte auf OpenStreetMap). Liegt kein Einsatz vor, steht in der Card „Keine Einsätze“.
 
 ## Hinweise
 
 - Die Bezirke müssen so geschrieben sein wie im Feld `bezirk.text` der API (z. B. „Braunau“, „Ried im Innkreis“). Fehlt ein Bezirk in der Liste, kann er frei eingegeben werden.
-- Je länger das Abfrageintervall, desto später erscheinen neue Einsätze.
+- Je länger das Abfrageintervall, desto später erscheinen neue Einsätze, Nachrichten und Events.
+- Der Feed enthält nur laufende Einsätze. „Beendet“ bedeutet daher, dass ein Einsatz nicht mehr im Feed steht.
+- Die bekannten Einsätze werden in `.storage/ooelfv_einsaetze.known` gespeichert, damit nach einem Neustart nichts doppelt gemeldet wird.
+- Das Integrations-Icon (`brand/icon.png`) zeigt Home Assistant ab Version 2026.3 an.
 - Inoffizielles Projekt, steht in keiner Verbindung zum OÖ Landesfeuerwehrverband. Das Icon ist eine eigene Grafik.
