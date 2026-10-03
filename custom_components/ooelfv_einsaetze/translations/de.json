@@ -3,11 +3,20 @@
     "step": {
       "user": {
         "title": "OÖ Feuerwehr Einsätze",
-        "description": "Wähle, welche Bezirke angezeigt werden sollen. Ohne Auswahl werden alle Bezirke angezeigt.",
+        "description": "Ohne Auswahl bei den Bezirken werden alle Bezirke angezeigt. Das Abfrageintervall bestimmt auch, wie aktuell die Benachrichtigungen sind.",
         "data": {
           "bezirke": "Bezirke",
           "subtyp_filter": "Einsatz od. Einsatzübung",
-          "interval": "Abfrageintervall"
+          "interval": "Abfrageintervall",
+          "notify_targets": "Benachrichtigen über",
+          "notify_new": "Bei neuem Einsatz benachrichtigen",
+          "notify_ended": "Bei beendetem Einsatz benachrichtigen",
+          "notify_changed": "Bei Änderung benachrichtigen (höhere Alarmstufe, weitere Feuerwehren)",
+          "min_alarmstufe": "Benachrichtigung ab Alarmstufe"
+        },
+        "data_description": {
+          "notify_targets": "Mehrfachauswahl aus allen notify-Diensten und -Entitäten (z. B. dein Handy). Ohne Auswahl werden keine Nachrichten gesendet. Die Events ooelfv_einsaetze_neu, _beendet und _geaendert werden immer ausgelöst.",
+          "min_alarmstufe": "0 = alle Einsätze. Gilt nur für Nachrichten, nicht für die Events."
         }
       }
     }
@@ -16,11 +25,20 @@
     "step": {
       "init": {
         "title": "OÖ Feuerwehr Einsätze",
-        "description": "Ohne Auswahl bei den Bezirken werden alle Bezirke angezeigt.",
+        "description": "Ohne Auswahl bei den Bezirken werden alle Bezirke angezeigt. Das Abfrageintervall bestimmt auch, wie aktuell die Benachrichtigungen sind.",
         "data": {
           "bezirke": "Bezirke",
           "subtyp_filter": "Einsatz od. Einsatzübung",
-          "interval": "Abfrageintervall"
+          "interval": "Abfrageintervall",
+          "notify_targets": "Benachrichtigen über",
+          "notify_new": "Bei neuem Einsatz benachrichtigen",
+          "notify_ended": "Bei beendetem Einsatz benachrichtigen",
+          "notify_changed": "Bei Änderung benachrichtigen (höhere Alarmstufe, weitere Feuerwehren)",
+          "min_alarmstufe": "Benachrichtigung ab Alarmstufe"
+        },
+        "data_description": {
+          "notify_targets": "Mehrfachauswahl aus allen notify-Diensten und -Entitäten (z. B. dein Handy). Ohne Auswahl werden keine Nachrichten gesendet. Die Events ooelfv_einsaetze_neu, _beendet und _geaendert werden immer ausgelöst.",
+          "min_alarmstufe": "0 = alle Einsätze. Gilt nur für Nachrichten, nicht für die Events."
         }
       }
     }
@@ -36,10 +54,14 @@
   },
   "entity": {
     "sensor": {
-      "einsaetze": { "name": "Aktuelle Einsätze" }
+      "einsaetze": {
+        "name": "Aktuelle Einsätze"
+      }
     },
     "binary_sensor": {
-      "einsatz_aktiv": { "name": "Einsatz aktiv" }
+      "einsatz_aktiv": {
+        "name": "Einsatz aktiv"
+      }
     }
   }
 }

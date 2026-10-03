@@ -10,7 +10,8 @@ Home-Assistant-Integration, die die **laufenden Feuerwehreinsätze in Oberöster
 - Filter nach **Einsatz od. Einsatzübung**: alle anzeigen, nur diese oder alles außer diesen
 - Einstellbares **Abfrageintervall**: 5, 10, 15 (Standard), 30, 45 oder 60 Minuten
 - Eigene **Lovelace-Card**, die automatisch registriert wird (keine Ressource nötig)
-- Sensoren für Automationen (z. B. Push-Nachricht bei neuem Einsatz)
+- **Benachrichtigungen** an frei wählbare Ziele (neue, beendete und geänderte Einsätze)
+- Sensoren und Events für eigene Automationen
 
 ## Installation über HACS
 
@@ -27,6 +28,35 @@ Home-Assistant-Integration, die die **laufenden Feuerwehreinsätze in Oberöster
 | `binary_sensor.…_einsatz_aktiv` | `on`, sobald mindestens ein Einsatz vorliegt. |
 
 Felder je Einsatz: `nummer`, `beginn`, `alarmstufe`, `einsatzort`, `einsatztyp`, `einsatzsubtyp`, `bezirk`, `gemeinde`, `bereich`, `strasse`, `zusatz`, `latitude`, `longitude`, `karte`, `feuerwehren` (Liste).
+
+## Benachrichtigungen
+
+In den Optionen der Integration wählst du aus, **wohin** Nachrichten gehen (Mehrfachauswahl aus allen `notify`-Diensten und -Entitäten, z. B. `notify.mobile_app_<handy>`):
+
+| Option | Standard | Beschreibung |
+|---|---|---|
+| Bei neuem Einsatz | an | Typ, Ort, Alarmstufe, Beginn und Feuerwehren, bei der Companion-App mit Link zur Karte |
+| Bei beendetem Einsatz | aus | Ein Einsatz gilt als beendet, sobald er nicht mehr im Feed steht (inkl. Dauer) |
+| Bei Änderung | aus | Höhere Alarmstufe oder weitere Feuerwehren |
+| Ab Alarmstufe | 0 | Nachrichten nur ab dieser Alarmstufe |
+
+- Es werden nur Einsätze gemeldet, die durch deine Bezirks- und Übungsfilter kommen.
+- Beim ersten Start, nach geänderten Filtern oder nach längerer Pause werden bereits laufende Einsätze **nicht** gemeldet.
+- Wie aktuell die Nachrichten sind, bestimmt das Abfrageintervall.
+
+### Events
+
+Unabhängig von den Nachrichten werden immer diese Events ausgelöst (Daten: alle Felder des Einsatzes, siehe oben): `ooelfv_einsaetze_neu`, `ooelfv_einsaetze_beendet` (zusätzlich `dauer_minuten`) und `ooelfv_einsaetze_geaendert` (zusätzlich `aenderungen`, `neue_feuerwehren`). Die Mindest-Alarmstufe gilt für Events nicht.
+
+```yaml
+triggers:
+  - trigger: event
+    event_type: ooelfv_einsaetze_neu
+actions:
+  - action: tts.speak
+    data:
+      message: "Neuer Einsatz: {{ trigger.event.data.einsatztyp }} in {{ trigger.event.data.gemeinde }}"
+```
 
 ## Card
 

@@ -42,3 +42,27 @@ BEZIRKE = [
 ]
 
 CARD_URL = f"/{DOMAIN}/ooelfv-einsaetze-card.js"
+
+# Benachrichtigungen
+CONF_NOTIFY_TARGETS = "notify_targets"
+CONF_NOTIFY_NEW = "notify_new"
+CONF_NOTIFY_ENDED = "notify_ended"
+CONF_NOTIFY_CHANGED = "notify_changed"
+CONF_MIN_ALARMSTUFE = "min_alarmstufe"
+
+DEFAULT_NOTIFY_NEW = True
+DEFAULT_NOTIFY_ENDED = False
+DEFAULT_NOTIFY_CHANGED = False
+DEFAULT_MIN_ALARMSTUFE = 0
+
+# Präfixe der Ziele: notify-Dienst (notify.mobile_app_x) oder notify-Entität
+TARGET_SERVICE = "service:"
+TARGET_ENTITY = "entity:"
+
+EVENT_NEW = f"{DOMAIN}_neu"
+EVENT_ENDED = f"{DOMAIN}_beendet"
+EVENT_CHANGED = f"{DOMAIN}_geaendert"
+
+# Gemerkte Einsätze werden verworfen, wenn der letzte Stand älter ist
+STORE_VERSION = 1
+STORE_MAX_AGE_HOURS = 6
