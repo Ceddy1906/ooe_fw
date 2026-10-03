@@ -91,3 +91,10 @@ Angezeigt werden je Einsatz: Beginn, Feuerwehren vor Ort (eine oder mehrere), Al
 - Die bekannten Einsätze werden in `.storage/ooelfv_einsaetze.known` gespeichert, damit nach einem Neustart nichts doppelt gemeldet wird.
 - Das Integrations-Icon (`brand/icon.png`) zeigt Home Assistant ab Version 2026.3 an.
 - Inoffizielles Projekt, steht in keiner Verbindung zum OÖ Landesfeuerwehrverband. Das Icon ist eine eigene Grafik.
+
+## Änderungen
+
+- **0.3.0:** Card mit visuellem Editor, Interaktionen (Tippen, Halten, Doppeltipp) und Layout-Optionen
+- **0.2.0:** Benachrichtigungen (neu, beendet, geändert) mit wählbaren Zielen, Mindest-Alarmstufe und Events
+- **0.1.1:** Card zeigt „Keine Einsätze“ bei leerer Liste, robustere Datenabfrage
+- **0.1.0:** Erste Version
